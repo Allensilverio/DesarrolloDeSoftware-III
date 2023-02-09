@@ -12,22 +12,55 @@ namespace TeoriaAsignacion1
     {
         static void Main(string[] args)
         {
-            Cliente cliente = new Cliente();
-            //cliente.ID = 1;
-            cliente.Nombres = "Allen Radhames";
-            cliente.Apellidos = "Silverio Olivo";
-            cliente.Estado = 0;
-            cliente.FechaNacimiento = DateTime.Parse("2004-06-01");
+            bool Run = true;
+            string opcion;
 
-            Console.WriteLine($"NOMBRES: {cliente.Nombres}- APELLIDOS:{cliente.Apellidos}");
+            while (Run)
+            {
+                Cliente cliente = new Cliente();
+                //cliente.ID = 1;
+                Console.WriteLine("Nombres: ");
+                cliente.Nombres = Console.ReadLine();
+                Console.WriteLine("Apellidos: ");
+                cliente.Apellidos = Console.ReadLine();
+                cliente.Estado = 0;
+                Console.WriteLine("Fecha Nacimiento: ");
+                string FechaNacimiento = Console.ReadLine();
+                cliente.FechaNacimiento = DateTime.Parse(FechaNacimiento);
+                Console.WriteLine("Comentario: ");
+                string comentario = Console.ReadLine();
 
-            SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\carim\\OneDrive\\Escritorio\\Allen\\TeoriaAsignacion1\\TeoriaAsignacion1\\MyData.mdf;Integrated Security=True");
-            connection.Open();
-            Console.WriteLine(connection.State);
+                //Console.WriteLine($"NOMBRES: {cliente.Nombres}- APELLIDOS:{cliente.Apellidos}");
 
-            SqlCommand command = new SqlCommand($"INSERT tblClientes(NOMBRES, APELLIDOS, FECHANACIMIENTO, SEXO, COMENTARIO) VALUES ('{cliente.Nombres}', '{cliente.Apellidos}', '{cliente.FechaNacimiento}', 'M', 'COMENTARIO')", connection);
+                SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\carim\\OneDrive\\Escritorio\\Allen\\TeoriaAsignacion1\\TeoriaAsignacion1\\MyData.mdf;Integrated Security=True");
+                connection.Open();
+                Console.WriteLine(connection.State);
+
+                SqlCommand command = new SqlCommand("INSERT tblClientes(NOMBRES, APELLIDOS, FECHANACIMIENTO, SEXO, COMENTARIO) VALUES (@Nombres, @Apellidos, @FechaNacimiento, 'M', @Comentario)", connection);
+                command.Parameters.AddWithValue("@comentario", comentario);
+                command.Parameters.AddWithValue("@Nombres", cliente.Nombres);
+                command.Parameters.AddWithValue("@Apellidos", cliente.Apellidos);
+                command.Parameters.AddWithValue("@FechaNacimiento", cliente.FechaNacimiento);
+                
+
+                command.ExecuteNonQuery();
+
+                Console.WriteLine("Quieres salir (s/n): ");
+                opcion = Console.ReadLine();
+
+
+                if (opcion == "s")
+                {
+                    Run = false;
+                }
+                else
+                {
+                    Run = true;
+                }
+
+
+            }
             
-             command.ExecuteNonQuery();
         }
     }
 }
