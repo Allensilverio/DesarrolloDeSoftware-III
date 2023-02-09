@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -31,12 +32,14 @@ namespace TeoriaAsignacion1
                 string comentario = Console.ReadLine();
 
                 //Console.WriteLine($"NOMBRES: {cliente.Nombres}- APELLIDOS:{cliente.Apellidos}");
+                
 
-                SqlConnection connection = new SqlConnection("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\carim\\OneDrive\\Escritorio\\Allen\\TeoriaAsignacion1\\TeoriaAsignacion1\\MyData.mdf;Integrated Security=True");
+                SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["Cn"].ConnectionString);
                 connection.Open();
                 Console.WriteLine(connection.State);
-
-                SqlCommand command = new SqlCommand("INSERT tblClientes(NOMBRES, APELLIDOS, FECHANACIMIENTO, SEXO, COMENTARIO) VALUES (@Nombres, @Apellidos, @FechaNacimiento, 'M', @Comentario)", connection);
+           
+                SqlCommand command = new SqlCommand($"ppInsertCliente", connection);
+                command.CommandType = System.Data.CommandType.StoredProcedure;
                 command.Parameters.AddWithValue("@comentario", comentario);
                 command.Parameters.AddWithValue("@Nombres", cliente.Nombres);
                 command.Parameters.AddWithValue("@Apellidos", cliente.Apellidos);
