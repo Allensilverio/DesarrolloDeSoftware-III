@@ -84,14 +84,15 @@ namespace TeoriaAsignacion1
 
 
                 command.ExecuteNonQuery();
-                command.Parameters.Clear(); // Limpiamos los parametro para hacer el siguiente query
+               
+
+                transaction = connection.BeginTransaction();
+                command.Transaction = transaction;
+                command.ExecuteNonQuery();
 
                 try
                 {
-                    transaction = connection.BeginTransaction();
-                    command.Transaction = transaction;
-                    command.ExecuteNonQuery();
-                   
+
                     
                     command.CommandText = "ppInsertMovimientos"; // actualizamos el nombre del command
 
