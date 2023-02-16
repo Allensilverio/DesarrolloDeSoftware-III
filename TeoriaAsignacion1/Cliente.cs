@@ -18,5 +18,7 @@ namespace TeoriaAsignacion1
 
         public decimal balance { get; set; }
 
+        public string Sexo { get; set; }
+
     }
 }
