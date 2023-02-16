@@ -13,6 +13,10 @@ namespace TeoriaAsignacion1
         public string Apellidos { get; set; }
         public int Estado { get; set; }
         public DateTime FechaNacimiento { get; set; }
+        public int TipoDocumento { get; set; }
+        public string Documento { get; set; }
+
+        public decimal balance { get; set; }
 
     }
 }
