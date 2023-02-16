@@ -75,13 +75,16 @@ namespace TeoriaAsignacion1
                 command.Parameters.AddWithValue("@Nombres", cliente.Nombres);
                 command.Parameters.AddWithValue("@Apellidos", cliente.Apellidos);
                 command.Parameters.AddWithValue("@FechaNacimiento", cliente.FechaNacimiento);
+
                 command.Parameters.AddWithValue("@TipoDocumento", cliente.TipoDocumento);
                 command.Parameters.AddWithValue("@Documento", cliente.Documento);
                 command.Parameters.AddWithValue("@Balance", cliente.balance);
                 command.Parameters.AddWithValue("@TipoTransaccion", movimiento.TipoTransaccion);
 
 
+
                 command.ExecuteNonQuery();
+                command.Parameters.Clear(); // Limpiamos los parametro para hacer el siguiente query
 
                 try
                 {
@@ -89,14 +92,14 @@ namespace TeoriaAsignacion1
                     command.Transaction = transaction;
                     command.ExecuteNonQuery();
                    
-                    command.Parameters.Clear(); // Limpiamos los parametro para hacer el siguiente query
+                    
                     command.CommandText = "ppInsertMovimientos"; // actualizamos el nombre del command
 
                     command.Parameters.AddWithValue("@TipoDocumento", cliente.TipoDocumento);
                     command.Parameters.AddWithValue("@Documento", cliente.Documento);
                     command.Parameters.AddWithValue("@TipoTransaccion", movimiento.TipoTransaccion);
                     command.Parameters.AddWithValue("@Dbcr", movimiento.Dbcr);
-                    command.Parameters.AddWithValue("@Monto", movimiento.Monto);
+                    command.Parameters.AddWithValue("@Monto", cliente.balance);
                     command.Parameters.AddWithValue("@Descripcion", comentario);
 
                     command.ExecuteNonQuery();
