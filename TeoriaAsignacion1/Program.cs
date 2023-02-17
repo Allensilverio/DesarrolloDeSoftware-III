@@ -117,15 +117,17 @@ namespace TeoriaAsignacion1
                 command.Parameters.AddWithValue("@Balance", cliente.balance);
                 command.Parameters.AddWithValue("@TipoTransaccion", movimiento.TipoTransaccion);
 
-                transaction = connection.BeginTransaction(); // Inicio de la Transaccion
-                command.Transaction = transaction;
-                command.ExecuteNonQuery();
+                
 
 
                 // Try Catch para la transaccion de InsertMovivimientos
 
                 try
                 {
+                    transaction = connection.BeginTransaction(); // Inicio de la Transaccion
+                    command.Transaction = transaction;
+                    command.ExecuteNonQuery();
+
                     command.Parameters.Clear(); // Limpair los parametros antes de utilizar el otro procedure
 
                     // Stored Procedure ppInserMovimientos - Insertamos los movimientos en la base de datos
@@ -138,6 +140,7 @@ namespace TeoriaAsignacion1
                     command.Parameters.AddWithValue("@Dbcr", movimiento.Dbcr);
                     command.Parameters.AddWithValue("@Monto", cliente.balance);
                     command.Parameters.AddWithValue("@Descripcion", comentario);
+                    command.Parameters.AddWithValue("@Oficina", ConfigurationManager.AppSettings["Oficina"]); // sacamos la oficina del app config
 
                     command.ExecuteNonQuery();
                     transaction.Commit();
