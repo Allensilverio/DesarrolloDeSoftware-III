@@ -37,24 +37,69 @@ namespace AsignacionLab3
                 Fallecidos fallecidos = new Fallecidos();
 
                 Console.WriteLine("------ Insertar Fallecidos -------");
-                Console.WriteLine("Tipo Documento: "); //Recibe tipo entero
-                fallecidos.TipoDocumento = int.Parse(Console.ReadLine());
-                Console.WriteLine("Documento: ");
-                fallecidos.Documento = Console.ReadLine();  
-                Console.WriteLine("Nombres: ");
-                fallecidos.Nombres = Console.ReadLine();
-                Console.WriteLine("Apellidos: ");
-                fallecidos.Apellidos = Console.ReadLine();
-                fallecidos.Estado = 0;
-                Console.WriteLine("Sexo: ");
-                fallecidos.Sexo = Console.ReadLine();
-                Console.WriteLine("Fecha Nacimiento: ");
-                string FechaNacimiento = Console.ReadLine();
-                fallecidos.FechaNacimiento = DateTime.Parse(FechaNacimiento);
+
                 Console.WriteLine("Pais: ");
                 fallecidos.Pais = Console.ReadLine();
                 Console.WriteLine("Ciudad: ");
                 fallecidos.Ciudad = Console.ReadLine();
+
+                // Data Reader - Para leer los datos de los clientes
+                command.Parameters.AddWithValue("@Pais", fallecidos.Pais);
+                command.Parameters.AddWithValue("@Ciudad", fallecidos.Ciudad);
+                SqlDataReader dr = command.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    Console.WriteLine("Tipo Documento: "); //Recibe tipo entero
+                    fallecidos.TipoDocumento = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Documento: ");
+                    fallecidos.Documento = Console.ReadLine();
+                    Console.WriteLine("Nombres: ");
+                    fallecidos.Nombres = Console.ReadLine();
+                    Console.WriteLine("Apellidos: ");
+                    fallecidos.Apellidos = Console.ReadLine();
+                    fallecidos.Estado = 0;
+                    Console.WriteLine("Sexo: ");
+                    fallecidos.Sexo = Console.ReadLine();
+                    Console.WriteLine("Fecha Nacimiento: ");
+                    string FechaNacimiento = Console.ReadLine();
+                    fallecidos.FechaNacimiento = DateTime.Parse(FechaNacimiento);
+
+                    Console.WriteLine("Pais: ");
+                    fallecidos.Pais = Console.ReadLine();
+                    Console.WriteLine("Ciudad: ");
+                    fallecidos.Ciudad = Console.ReadLine();
+
+
+
+                }
+                else
+                {
+                    
+                    Console.WriteLine("Tipo Documento: "); //Recibe tipo entero
+                    fallecidos.TipoDocumento = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Documento: ");
+                    fallecidos.Documento = Console.ReadLine();
+                    Console.WriteLine("Nombres: ");
+                    fallecidos.Nombres = Console.ReadLine();
+                    Console.WriteLine("Apellidos: ");
+                    fallecidos.Apellidos = Console.ReadLine();
+                    fallecidos.Estado = 0;
+                    Console.WriteLine("Sexo: ");
+                    fallecidos.Sexo = Console.ReadLine();
+                    Console.WriteLine("Fecha Nacimiento: ");
+                    string FechaNacimiento = Console.ReadLine();
+                    fallecidos.FechaNacimiento = DateTime.Parse(FechaNacimiento);
+
+                    Console.WriteLine("Pais: ");
+                    fallecidos.Pais = Console.ReadLine();
+                    Console.WriteLine("Ciudad: ");
+                    fallecidos.Ciudad = Console.ReadLine();
+
+
+                }
+
+                dr.Close();
 
                 transaction = connection.BeginTransaction(); // Inicio de la Transaccion
                 command.Transaction = transaction;
