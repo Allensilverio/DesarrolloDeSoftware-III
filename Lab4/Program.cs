@@ -68,7 +68,7 @@ namespace Lab4
                 feligreses.diezma = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("Pertenece a Comunidad: ");
-                feligreses.perteneceAcomunidad = int.Parse(Console.ReadLine());
+                feligreses.PerteneceAComunidad = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("----- Insertar Pecado ------");
 
@@ -101,7 +101,8 @@ namespace Lab4
                     command.Parameters.AddWithValue("@Diezma", feligreses.diezma);
                     command.Parameters.AddWithValue("@PerteneceComunidad", feligreses.PerteneceAComunidad);
                     command.Parameters.AddWithValue("@UltimaVisitaIglesia", feligreses.fechaUltimaVisita);
-                    
+                    command.Parameters.AddWithValue("@TipoEvento", pecado.TipoEvento);
+
 
                     command.ExecuteNonQuery();
 
