@@ -127,8 +127,9 @@ namespace Lab4
                     command.Parameters.Clear();
 
                     transaction.Commit();
-
+                    log.Info("Se hizo el commit");
                 }
+
                 catch (Exception)
                 {
                     transaction.Rollback();
