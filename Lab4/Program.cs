@@ -5,6 +5,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using log4net;
+using log4net.Config;
 
 namespace Lab4
 {
@@ -12,6 +14,9 @@ namespace Lab4
     {
         static void Main(string[] args)
         {
+            ILog log = LogManager.GetLogger(typeof(Program));
+            log.Info("Hello World");
+
             string opcion = "";
             bool Run = true;
 
@@ -90,6 +95,8 @@ namespace Lab4
 
                 try
                 {
+                    command.CommandText = "spUpsertFeligreses";
+
                     command.Parameters.AddWithValue("@TipoDocumento", feligreses.tipodocumento);
                     command.Parameters.AddWithValue("@Documento", feligreses.documento);;
                     command.Parameters.AddWithValue("@Nombres", feligreses.nombres);
@@ -105,16 +112,19 @@ namespace Lab4
 
 
                     command.ExecuteNonQuery();
-
                     command.Parameters.Clear();
 
+
                     command.CommandText = "spInsertEvento";
+
                     command.Parameters.AddWithValue("@TipoEvento", pecado.TipoEvento);
                     command.Parameters.AddWithValue("@Nota", pecado.Nota);
                     command.Parameters.AddWithValue("@Descripcion", pecado.Descripcion);
+                    command.Parameters.AddWithValue("@TipoDocumento", feligreses.tipodocumento);
+                    command.Parameters.AddWithValue("@Documento", feligreses.documento);
 
-                    
                     command.ExecuteNonQuery();
+                    command.Parameters.Clear();
 
                     transaction.Commit();
 
