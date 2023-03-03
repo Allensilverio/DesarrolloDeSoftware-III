@@ -23,6 +23,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab5Guerra", "Lab5Guerra\La
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsServiceLab", "WindowsServiceLab\WindowsServiceLab.csproj", "{0F9A2D90-B21F-42FC-86D0-B97CE3372D5B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenerServer", "ListenerServer\ListenerServer.csproj", "{2991B845-B0E3-44B3-AE6A-A7A4B4E9A6FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientServer", "ClientServer\ClientServer.csproj", "{696E0746-F88F-426C-9977-5A199BA54C2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +73,14 @@ Global
 		{0F9A2D90-B21F-42FC-86D0-B97CE3372D5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F9A2D90-B21F-42FC-86D0-B97CE3372D5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F9A2D90-B21F-42FC-86D0-B97CE3372D5B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2991B845-B0E3-44B3-AE6A-A7A4B4E9A6FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2991B845-B0E3-44B3-AE6A-A7A4B4E9A6FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2991B845-B0E3-44B3-AE6A-A7A4B4E9A6FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2991B845-B0E3-44B3-AE6A-A7A4B4E9A6FF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{696E0746-F88F-426C-9977-5A199BA54C2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{696E0746-F88F-426C-9977-5A199BA54C2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{696E0746-F88F-426C-9977-5A199BA54C2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{696E0746-F88F-426C-9977-5A199BA54C2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
