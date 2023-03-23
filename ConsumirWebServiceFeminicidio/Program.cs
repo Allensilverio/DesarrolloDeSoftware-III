@@ -60,7 +60,7 @@ namespace ConsumirWebServiceFeminicidio
                 Console.WriteLine("Descipcion: ");
                 indicio.Descripcion = Console.ReadLine();
 
-                Console.WriteLine(ws.RegistrarDatos(verdugo, indicio));
+                Console.WriteLine(ws.RegistrarDatos(verdugo, indicio).mensaje);
                 log.Info("Se ha hecho un registro existoso");
 
                 Console.WriteLine("Quieres salir (s/n)");
